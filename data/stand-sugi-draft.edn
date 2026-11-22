@@ -1,0 +1,22 @@
+;; soma 杣 — sugi stand entries, DRAFT format example (AWAI-706).
+;;
+;; Status: DRAFT. :sourcing :unverified EVERYWHERE in this file.
+;; These are FORMAT EXAMPLES, not measurements: tree dimensions are illustrative
+;; placeholders inside the ranges of published yield tables
+;; (FFPRI 民有スギ人工林収穫予想表 2026 + 収穫表調製業務研究資料 #20 愛知・岐阜地方スギ),
+;; coords are a synthetic layout. This file MUST NOT feed plan-fell / harvester /
+;; extraction as if it were a surveyed stand. Real stands enter only via
+;; owner-consented, field-surveyed data (see docs/kafun-synthetic-to-real-validation.edn).
+;; Shape mirrors data/stand.edn (tx-data vector, pr-str'd values) so analyze/load-seed reads it.
+[{:db/id -1
+  :stand/stand "{:id \"sugi-draft-01\", :name \"sugi format example (UNVERIFIED)\", :sourcing :unverified, :slope-pct 15.0, :soil :firm, :note \"FORMAT EXAMPLE ONLY: dimensions illustrative within published yield-table ranges; coords synthetic layout; NOT a surveyed stand.\"}"
+  :stand/trees "[{:id \"sugi-x-1\", :species :cryptomeria, :coord [10 6], :height-m 22.0, :diameter-m 0.34, :lean-az 10.0, :lean-deg 3.0, :wind-az 10.0, :wind-mps 1.5, :sourcing :unverified, :note \"Illustrative: NOT measured.\"} {:id \"sugi-x-2\", :species :cryptomeria, :coord [22 10], :height-m 26.0, :diameter-m 0.42, :lean-az 180.0, :lean-deg 2.0, :wind-az 175.0, :wind-mps 1.0, :sourcing :unverified, :note \"Illustrative: NOT measured.\"}]"
+  :stand/exclusions "[{:id \"x-road\", :kind :road, :coord [70 0]} {:id \"x-stream\", :kind :watercourse, :coord [5 70]}]"
+  :stand/price-table "[{:class :sawlog, :length-m 5.0, :price 95.0} {:class :sawlog, :length-m 4.0, :price 88.0} {:class :pulp, :length-m 3.0, :price 42.0} {:class :pulp, :length-m 2.0, :price 38.0}]"
+  :stand/assortments "[{:log-id \"l-1\", :grade :sawlog, :length-m 5.0, :weight-kg 9000.0, :volume-m3 0.42}]"
+  :stand/route "{:id \"route-sugi-x\", :segments [{:from \"sugi-x-1\", :to \"landing\", :grade-pct 10.0, :length-m 14.0} {:from \"sugi-x-2\", :to \"landing\", :grade-pct 12.0, :length-m 26.0}]}"
+  :stand/forwarder "{:id \"fwd-1\", :kind :forwarder, :max-grade-pct 35.0, :ground-pressure-kpa 45.0, :bearing-firm-kpa 80.0, :bearing-wet-kpa 30.0, :reach-m 7.5}"
+  :stand/head "{:max-diameter-cm 60.0, :feed-rate-mps 5.0}"
+  :stand/truck "{:max-weight-kg 24000.0, :max-length-m 13.0, :bunk-count 4}"
+  :stand/road "{:landing \"landing\", :stand \"stand\", :segments [{:from \"landing\", :to \"stand\", :grade-pct 8.0, :length-m 120.0}]}"
+  :stand/replant "{:area-ha 2.0, :species :cryptomeria, :target-stems-per-ha 2500.0, :soil :firm, :note \"sugi replant is illustrative; real replant needs consent + permit checks (cf. authorities.edn :shinrin-34-1).\"}"}]
