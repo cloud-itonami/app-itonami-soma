@@ -1,0 +1,99 @@
+;; soma 杣 — sugi standing-data source inventory (DRAFT, AWAI-706 / AWAI-928 boundary)
+;;
+;; Status: DRAFT read-only list. Nothing contacted, nothing scraped beyond normal
+;; page reads. No owner data, no personal data. License column states what was
+;; verified on 2026-11-22/23; where no open license was verified the row is
+;; READ + CITE ONLY (do not redistribute files, do not treat as open data).
+;; No consent is granted or recorded by this file (sugi-kyoryoku G1/G2: humans do that).
+
+[{:source/id :ffpri-minyu-sugi-yield
+  :source/name "民有スギ人工林収穫予想表（林分材積表）"
+  :source/publisher "森林総合研究所 (FFPRI, 森林研究・整備機構)"
+  :source/urls ["https://www.ffpri.go.jp/pubs/chukiseika/6th-chuukiseika1.html"]
+  :source/holds "地位・林齢別の平均的な ha 当たり本数・上層樹高・材積 (PDF + Excel).
+                 第6期中長期計画成果1, 発行 2026-09-15, ISBN 978-4-909941-64-0."
+  :source/license "© Forest Research and Management Organization, All rights reserved
+                   (site footer, verified on page). NO open license verified:
+                   READ + CITE ONLY. Contact kanko@ffpri.go.jp before any reuse
+                   beyond citation."
+  :source/use "Range-check for synthetic stands (heights, stems/ha, volumes by age/site).
+               NOT tree-level data; cannot populate :stand/trees directly."}
+
+ {:source/id :ffpri-choshuhyo-shirabe
+  :source/name "収穫表調製業務研究資料 (全35冊 PDF)"
+  :source/publisher "林野庁調製・森林総合研究所掲載 (林野庁の了解を得て掲載)"
+  :source/urls ["https://www.ffpri.go.jp/labs/shukakushiken/02gyoken/"]
+  :source/holds "国有林スギ等 40 種類の林分収穫表の調製説明書全文.
+                 スギ関係に #4 土佐スギ, #7 紀州スギ, #11 熊本スギ,
+                 #13 越後・会津スギ, #14 北関東・阿武隈スギ, #17 天城スギ,
+                 #20 愛知・岐阜地方スギ (1959, 名古屋営林局), #22 山形スギ,
+                 #23 茨城スギ, #24 飫肥スギ, #28 青森スギ, #32 大井・天竜スギ,
+                 #33 鹿児島スギ, #36 山陰スギ. Historical standard-site tables."
+  :source/license "Same site © as above; 林野庁了解済み掲載. NO open license verified:
+                   READ + CITE ONLY. #20 is the closest regional table for 愛知."
+  :source/use "Regional range-check for 愛知/岐阜 sugi (DBH/height/age bands).
+               Historical (1949-1969 program); modern stands need local tables."}
+
+ {:source/id :rinya-gspace-lidar
+  :source/name "林野庁 高精度森林資源情報 + 全国統合データ (G空間情報センター)"
+  :source/publisher "林野庁 (via G空間情報センター)"
+  :source/urls ["https://front.geospatial.jp/mm_202310_1"
+                "https://www.geospatial.jp/ckan/organization/tochigipref-shinrin-seibi"]
+  :source/holds "樹種ポリゴン (スギ/ヒノキ/広葉樹), DCHM (樹冠高), DEM, CS立体図,
+                 傾斜区分図, 森林資源量集計メッシュ (20m, 樹種・本数・平均樹高・材積).
+                 First release 2023-10 (栃木・兵庫・高知), since expanded;
+                 2026-02 事業で 森林計画対象森林レイヤ + 全国森林資源メッシュを
+                 全国統一仕様で順次公開."
+  :source/license "公共データ利用規約 PDL1.0 (verified on prefectural mirror pages,
+                   e.g. Hiroshima DoboX dataset 1521; G-space pages carry the same
+                   利用規約). Commercial use allowed WITH attribution. Re-verify the
+                   terms on the exact dataset page at download time."
+  :source/use "PRIMARY machine-usable open source for REAL sugi polygons + heights.
+               Mesh aggregates can seed stand outlines; per-tree DBH/coords still need
+               field survey + owner consent. Check whether 愛知-zone meshes are published
+               before claiming coverage."}
+
+ {:source/id :ksj-forest-area
+  :source/name "国土数値情報 森林地域データ (A13)"
+  :source/publisher "国土交通省"
+  :source/urls ["http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-A13.html"]
+  :source/holds "森林地域ポリゴン (愛知: 世界測地系 H18, 7.37MB). 森林の存在範囲のみ;
+                 樹種・材積なし."
+  :source/license "国土数値情報利用約款 (attribution). Confirm the current 約款 on the
+                   download page at use time; no file redistributed here."
+  :source/use "Context only (is a location forest land?). No stand parameters."}
+
+ {:source/id :aichi-opendata-catalog
+  :source/name "愛知県オープンデータカタログ + マップあいち森林情報マップ"
+  :source/publisher "愛知県"
+  :source/urls ["https://www.pref.aichi.jp/opendata/"
+                "https://www.pref.aichi.jp/soshiki/rinmu/etsurankouhu.html"]
+  :source/holds "Catalog data: CC-BY 2.1 JP (verified). BUT 森林簿・森林計画図の小班
+                 属性は所有者限定 (本人・委任者のみ申請可, verified). 公開の森林情報
+                 マップは林班レベルの境界 + 林相のみ (verified via prefectural survey)."
+  :source/license "CC-BY 2.1 JP for catalog open data. STAND-LEVEL sugi data is NOT open:
+                   owner-restricted. Treat 愛知 as CONSENT-GATED: real stand attributes
+                   need the forest owner's application + consent (human-handled)."
+  :source/use "Regional context only. Real 愛知 stands are BLOCKED on owner consent
+               (owner-blocked item, not a data task)."}
+
+ {:source/id :pref-yield-examples
+  :source/name "都道府県 林分材積表 (例: 鳥取県・和歌山県)"
+  :source/publisher "鳥取県 / 和歌山県 (other prefectures publish equivalents)"
+  :source/urls ["https://www.pref.tottori.lg.jp/321298.htm"
+                "https://www.pref.wakayama.lg.jp/prefg/070600/rinbunzaisekihyou/index.html"]
+  :source/holds "スギ・ヒノキ林分材積表 PDF + Excel (地位・林齢別). 和歌山は収穫予測
+                 システム (Excel) 付き. Modern prefectural tables."
+  :source/license "Prefectural site terms; NO blanket open license verified:
+                   READ + CITE ONLY until the license on each file is confirmed."
+  :source/use "Range-check + format examples for prefectural yield tables.
+               愛知 equivalent: ask the prefecture (human contact, approval-gated)."}
+
+ {:source/id :js-wood-science
+  :source/name "日本木材学会 (誌上論文・大会発表)"
+  :source/publisher "日本木材学会"
+  :source/urls ["https://www.jwrs.org/"]
+  :source/holds "Method references (wood properties, grading). NOT a standing-data source:
+                 no open per-tree/per-stand sugi inventory found."
+  :source/license "N/A (not a data source). Cite papers normally if used."
+  :source/use "None for stand data. Bucking/grading logic only, if ever cited."}]
